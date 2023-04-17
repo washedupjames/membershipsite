@@ -11,7 +11,6 @@ BlogPost
     - title
     - description
 
-
 Content
     - content: video / blog post / newsletter / podcast
     - data:
@@ -19,8 +18,8 @@ Content
         blog post: { title, description, image }
     - Pricing (ManyToMany)
 
-    
 
+    
 ## Subscription via Stripe
 
 Pricing
