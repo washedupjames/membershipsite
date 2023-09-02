@@ -16,6 +16,7 @@ urlpatterns = [
 
     # Content
     path("courses/", include("membersite.content.urls", namespace="content")),
+    path("payment/", include("membersite.payment.urls", namespace="payment")),
 
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
