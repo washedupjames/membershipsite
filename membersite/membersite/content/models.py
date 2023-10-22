@@ -117,3 +117,5 @@ user_logged_in.connect(user_logged_in_receiver)
 email_confirmed.connect(post_email_confirmed)
 pre_save.connect(pre_save_course, sender=Course)
 pre_save.connect(pre_save_video, sender=Video)
+
+zzzz
