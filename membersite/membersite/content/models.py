@@ -119,4 +119,4 @@ pre_save.connect(pre_save_course, sender=Course)
 pre_save.connect(pre_save_video, sender=Video)
 
 zdfhgfhjjjjjjjjjjjjj
-vvvv
+vvvvss
