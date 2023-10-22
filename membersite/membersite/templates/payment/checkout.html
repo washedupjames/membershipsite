@@ -1,14 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
 
-
 {% block extra_head %}
 <link rel="stylesheet" href="{% static 'css/stripe.css' %}" />
 <script src="https://js.stripe.com/v3/"></script>
 {% endblock extra_head %}
 
 {% block content %}
-
   <div class="flex justify-center mx-auto">
     <div class="py-3">
       <div class="border border-gray-200 rounded shadow-md px-3 py-3">
@@ -16,10 +14,10 @@
           Enroll for the {{ pricing_tier.name }} membership
         </h2>
         <p class="text-3xl text-center text-gray-800">
-          {% if pricing_tier.currency == "gbp" %}
-          £{{ pricing_tier.price }}/mo
+          {% if pricing_tier.currency == "usd" %}
+          ${{ pricing_tier.price }}/mo
           {% else %}
-          £{{ pricing_tier.price }}
+          €{{ pricing_tier.price }}/mo
           {% endif %}
         </p>
       </div>
@@ -34,15 +32,15 @@
           <p id="card-errors" role="alert"></p>
         </form>
       </div>
-</div>
-</div>
-</div>
+    </div>
+  </div>
 {% endblock content %}
 
 {% block javascript %}
 <script>
 
 const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
 
 var stripe = Stripe("{{ STRIPE_PUBLIC_KEY }}");
 var elements = stripe.elements();
@@ -63,9 +61,6 @@ var style = {
     iconColor: "#fa755a"
   }
 };
-
-
-
 
 var priceId = "{{ pricing_tier.stripe_price_id }}"
 
@@ -142,7 +137,7 @@ function createPaymentMethod({ card, isPaymentRetry, invoiceId }) {
 
 function createSubscription({ paymentMethodId, priceId }) {
   return (
-    fetch("{%}", {
+    fetch("{% url 'payment:create-subscription' %}", {
       method: 'post',
       headers: {
         'Content-Type': "application/json",
@@ -276,7 +271,8 @@ function onSubscriptionComplete(result) {
   // Payment was successful.
   if (result.subscription.status === 'active') {
       console.log("Complete")
-      window.location.href = "{%}"
+      window.location.href = "{% url 'users:detail' request.user.username %}"
+     
     // Change your UI to show a success message to your customer.
     // Call your backend to grant access to your service based on
     // `result.subscription.items.data[0].price.product` the customer subscribed to.
@@ -289,7 +285,7 @@ function retryInvoiceWithNewPaymentMethod({
   priceId
 }) {
   return (
-    fetch("{%}", {
+    fetch("{% url 'payment:retry-invoice' %}", {
       method: 'post',
       headers: {
         'Content-Type': "application/json",
@@ -349,12 +345,7 @@ function changeLoadingState(isLoading) {
     document.querySelector('#subscription-form button').disabled = false;
   }
 }
- 
 
 </script>
 
-
-
 {% endblock javascript %}
-
-

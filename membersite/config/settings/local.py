@@ -11,7 +11,7 @@ SECRET_KEY = env(
     default="9ZPy5TndeKf8tInxQPEmaQ0qqLlVr4BgdI2ePvrlkkSct7dS7pYhLmdGwSdVCpDc",
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]
+ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", "6090-208-127-197-118.ngrok-free.app",]
 
 # CACHES
 # ------------------------------------------------------------------------------
@@ -64,3 +64,9 @@ CELERY_TASK_EAGER_PROPAGATES = True
 # Stripe
 STRIPE_PUBLIC_KEY = env("STRIPE_PUBLIC_KEY")
 STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY")
+
+CSRF_TRUSTED_ORIGINS = ['https://6090-208-127-197-118.ngrok-free.app', ]
+
+
+
+
