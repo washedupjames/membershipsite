@@ -102,7 +102,7 @@ def post_email_confirmed(request, email_address, *args, **kwargs):
     subscription.stripe_subscription_id = stripe_subscription["id"]
     subscription.save()
     user.stripe_customer_id = stripe_customer["id"]
-    user.save()
+    user.save()ssssss
 
 
 def user_logged_in_receiver(sender, user, **kwargs):
