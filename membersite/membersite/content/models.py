@@ -118,5 +118,3 @@ email_confirmed.connect(post_email_confirmed)
 pre_save.connect(pre_save_course, sender=Course)
 pre_save.connect(pre_save_video, sender=Video)
 
-zdfhgfhjjjjjjjjjjjjj
-vvvvss
