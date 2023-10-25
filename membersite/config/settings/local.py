@@ -1,5 +1,6 @@
 from .base import *  # noqa
 from .base import env
+import os
 
 # GENERAL
 # ------------------------------------------------------------------------------
@@ -11,7 +12,7 @@ SECRET_KEY = env(
     default="9ZPy5TndeKf8tInxQPEmaQ0qqLlVr4BgdI2ePvrlkkSct7dS7pYhLmdGwSdVCpDc",
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", "6090-208-127-197-118.ngrok-free.app",]
+ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", "90dd-208-127-197-103.ngrok-free.app",]
 
 # CACHES
 # ------------------------------------------------------------------------------
@@ -65,7 +66,7 @@ CELERY_TASK_EAGER_PROPAGATES = True
 STRIPE_PUBLIC_KEY = env("STRIPE_PUBLIC_KEY")
 STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY")
 
-CSRF_TRUSTED_ORIGINS = ['https://6090-208-127-197-118.ngrok-free.app', ]
+CSRF_TRUSTED_ORIGINS = ['https://90dd-208-127-197-103.ngrok-free.app', ]
 
 
 
@@ -74,7 +75,8 @@ CSRF_TRUSTED_ORIGINS = ['https://6090-208-127-197-118.ngrok-free.app', ]
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'parkerman23@gmail.com'
-EMAIL_HOST_PASSWORD = 'xugnxyzgvjgcvjay'
+EMAIL_HOST_USER = os.environ.get('GMAIL_ACCOUNT')
+EMAIL_HOST_PASSWORD = os.environ.get('GMAIL_APP_PASSWORD')
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'parkerman23@gmail.com'
+DEFAULT_FROM_EMAIL = os.environ.get('GMAIL_ACCOUNT')
+
