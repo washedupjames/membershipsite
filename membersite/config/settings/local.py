@@ -70,3 +70,11 @@ CSRF_TRUSTED_ORIGINS = ['https://6090-208-127-197-118.ngrok-free.app', ]
 
 
 
+# Email Settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'parkerman23@gmail.com'
+EMAIL_HOST_PASSWORD = 'xugnxyzgvjgcvjay'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'parkerman23@gmail.com'
