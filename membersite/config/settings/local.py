@@ -12,7 +12,7 @@ SECRET_KEY = env(
     default="9ZPy5TndeKf8tInxQPEmaQ0qqLlVr4BgdI2ePvrlkkSct7dS7pYhLmdGwSdVCpDc",
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", "90dd-208-127-197-103.ngrok-free.app",]
+ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", "f81f-82-132-224-41.ngrok-free.app",]
 
 # CACHES
 # ------------------------------------------------------------------------------
@@ -34,14 +34,14 @@ EMAIL_BACKEND = env(
 # django-debug-toolbar
 # ------------------------------------------------------------------------------
 # https://django-debug-toolbar.readthedocs.io/en/latest/installation.html#prerequisites
-INSTALLED_APPS += ["debug_toolbar"]  # noqa F405
+# INSTALLED_APPS += ["debug_toolbar"]  # noqa F405
 # https://django-debug-toolbar.readthedocs.io/en/latest/installation.html#middleware
-MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]  # noqa F405
+# MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]  # noqa F405
 # https://django-debug-toolbar.readthedocs.io/en/latest/configuration.html#debug-toolbar-config
-DEBUG_TOOLBAR_CONFIG = {
-    "DISABLE_PANELS": ["debug_toolbar.panels.redirects.RedirectsPanel"],
-    "SHOW_TEMPLATE_CONTEXT": True,
-}
+# DEBUG_TOOLBAR_CONFIG = {
+#   "DISABLE_PANELS": ["debug_toolbar.panels.redirects.RedirectsPanel"],
+#  "SHOW_TEMPLATE_CONTEXT": True,}
+
 # https://django-debug-toolbar.readthedocs.io/en/latest/installation.html#internal-ips
 INTERNAL_IPS = ["127.0.0.1", "10.0.2.2"]
 if env("USE_DOCKER") == "yes":
@@ -66,7 +66,7 @@ CELERY_TASK_EAGER_PROPAGATES = True
 STRIPE_PUBLIC_KEY = env("STRIPE_PUBLIC_KEY")
 STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY")
 
-CSRF_TRUSTED_ORIGINS = ['https://90dd-208-127-197-103.ngrok-free.app', ]
+CSRF_TRUSTED_ORIGINS = ['https://f81f-82-132-224-41.ngrok-free.app', ]
 
 
 

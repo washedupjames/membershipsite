@@ -6,14 +6,17 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/tailwind.css' %}">
 
 
-<nav class="bg-gray-800"> 
+<nav class="bg-gray-800 navbar-transparent backdrop-blur-md backdrop-filter"> 
+  <!-- Rest of your navigation code here -->
+</nav>
+
 <div class="max-w-5xl mx-auto px-2 sm:px-4 lg:px-8">
    
       <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div class="relative flex h-16 items-center justify-between">
           <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
             <!-- Mobile menu button-->
-            <button type="button" class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+            <button  id="toggle-button" type="button" class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-indigo-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
               <span class="sr-only">Open main menu</span>
               <!--
                 Icon when menu is closed.
@@ -46,13 +49,21 @@
                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                 
     
-                <a href="{% url 'content:course-list' %}" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">IELTS</a>
+                <a href="{% url 'content:course-list' %}" class="text-indigo-600 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">IELTS</a>
     
                 <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Projects</a>
     
                 <a href="{% url 'about' %}" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">About</a>
 
-                <a href="{% url 'payment:enroll' %}" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Enroll</a>
+               {% if request.user.is_authenticated %}
+          <a href="{% url 'payment:enroll' %}" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Enroll</a>
+          {% else %}
+          <div class="relative">
+            <div class="ml-auto">
+            <a href="{% url 'account_signup' %}" class="block px-4 py-2 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md" role="button" tabindex="-1">Sign Up</a>
+          </div>
+         </div>
+          {% endif %}
               </div>
             </div>
           </div>
@@ -75,12 +86,17 @@
                   });
                 </script>
                 
-    
+    <script>
+  document.getElementById('toggle-button').addEventListener('click', function() {
+    var mobileMenu = document.getElementById('mobile-menu');
+    mobileMenu.classList.toggle('hidden'); // Toggle the 'hidden' class
+  });
+</script>
 
               </div>
 
 
-                          
+              
     
               <!--
                 Dropdown menu, show/hide based on menu state.
@@ -102,7 +118,10 @@
                 <a href="{% url 'account_logout' %}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Logout</a>
                 {% else %}
                 <a href="{% url 'account_login' %}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Log In</a>
+                
+                <a href="{% url 'account_signup' %}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Sign Up</a>
                 {% endif %}
+                
               </div>
             </div>
           </div>
@@ -110,17 +129,44 @@
       </div>
     
       <!-- Mobile menu, show/hide based on menu state. -->
-      <div class="sm:hidden" id="mobile-menu">
-        <div class="space-y-1 px-2 pt-2 pb-3">
-          <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-          <a href="#" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Dashboard</a>
+
+      <div class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-blue-700 ring-1 ring-black ring-opacity-5 backdrop-blur-md backdrop-filter" id="user-menu" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+        <!-- Dropdown menu content here -->
+</div>
+
+
+
+
+<div class="sm:hidden hidden fixed top-0 left-0 w-72 p-2 z-50 bg-gray-200 border mt-16 h-full" id="mobile-menu">
+  <div class="space-y-1">
+    <a href="{% url 'content:course-list' %}" class="block px-3 py-2 text-base font-medium text-indigo-600">IELTS</a>
+    <a href="#" class="block px-3 py-2 text-base font-medium text-indigo-600">Projects</a>
+    <a href="{% url 'about' %}" class="block px-3 py-2 text-base font-medium text-indigo-600">About</a>
+  </div>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <div class="mt-auto"> <!-- This div will push content to the bottom -->
+    {% if request.user.is_authenticated %}
+      <a href="{% url 'payment:enroll' %}" class="text-indigo-700 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Enroll</a>
+    {% else %}
     
-          <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Team</a>
-    
-          <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Projects</a>
-    
-          <a href="{% url 'about' %}" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">About</a>
-        </div>
-      </div>
+    {% endif %}
+  </div>
+</div>
+
+
     </nav>
 </div>
+
+
+
+<script>
+  document.getElementById('mobile-menu').addEventListener('click', function() {
+    var mobileMenu = document.getElementById('mobile-menu');
+    mobileMenu.classList.toggle('hidden'); // Toggle the 'hidden' class
+  });
+</script>

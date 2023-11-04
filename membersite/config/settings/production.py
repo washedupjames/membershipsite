@@ -1,16 +1,30 @@
 from .base import *  # noqa
 from .base import env
+import django_heroku
+import os
 
 # GENERAL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["membersite.com"])
-
+#ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["membersite.com"])
+ALLOWED_HOSTS = ['membersite.herokuapp.com']
 # DATABASES
 # ------------------------------------------------------------------------------
-DATABASES["default"]["CONN_MAX_AGE"] = env.int("CONN_MAX_AGE", default=60)  # noqa F405
+# DATABASES["default"]["CONN_MAX_AGE"] = env.int("CONN_MAX_AGE", default=60)  # noqa F405
+
+DATABASE = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'd1u4nn6m7csn96',
+            'USER': 'xtjvmczxvegsuc',
+            'PASSWORD': 'ac3d471f9297761e674c23459697c225368d3385651e342d5b465a4a6ab383f2',
+            'HOST': 'ec2-34-242-154-118.eu-west-1.compute.amazonaws.com',
+            'PORT' : '5432',
+ 
+        }
+    }
 
 # CACHES
 # ------------------------------------------------------------------------------
@@ -84,7 +98,13 @@ aws_s3_domain = AWS_S3_CUSTOM_DOMAIN or f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws
 # ------------------------
 STATICFILES_STORAGE = "membersite.utils.storages.StaticRootS3Boto3Storage"
 COLLECTFAST_STRATEGY = "collectfast.strategies.boto3.Boto3Strategy"
-STATIC_URL = f"https://{aws_s3_domain}/static/"
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = "/static/"
+django_heroku.settings(locals())
+
+
+
 # MEDIA
 # ------------------------------------------------------------------------------
 DEFAULT_FILE_STORAGE = "membersite.utils.storages.MediaRootS3Boto3Storage"
