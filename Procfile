@@ -1,5 +1,5 @@
 release: python manage.py migrate
-web: gunicorn memberite.config.wsgi
+web: gunicorn membersite.config.wsgi
 
 
 
