@@ -144,8 +144,12 @@ EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
 # Collectfast
 # ------------------------------------------------------------------------------
 # https://github.com/antonagestam/collectfast#installation
-INSTALLED_APPS = ["collectfast"] + INSTALLED_APPS  # noqa F405
-
+INSTALLED_APPS = [
+    "membersite.content",  # Add your custom app here
+    "collectfast",
+    # ...
+    # Other installed apps
+]
 # LOGGING
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#logging
