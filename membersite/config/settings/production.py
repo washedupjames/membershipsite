@@ -6,7 +6,9 @@ import os
 # GENERAL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
-SECRET_KEY = env("DJANGO_SECRET_KEY")
+
+SECRET_KEY = env("v=qu294dt!0hzv=wec-w4^j-&ky2+wpw&6&#7!1=wqj4-*kty+")
+
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 #ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["membersite.com"])
 ALLOWED_HOSTS = ['membersite.herokuapp.com']
@@ -102,6 +104,7 @@ COLLECTFAST_STRATEGY = "collectfast.strategies.boto3.Boto3Strategy"
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = "/static/"
 django_heroku.settings(locals())
+
 
 
 
