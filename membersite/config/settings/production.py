@@ -7,7 +7,7 @@ import os
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 
-SECRET_KEY = env("v=qu294dt!0hzv=wec-w4^j-&ky2+wpw&6&#7!1=wqj4-*kty+")
+SECRET_KEY = env("h__g#hlstt=qm%9+m4d3i1@+^-*8ygjw4wjk7_%_!r1%i5g!ln")
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 #ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["membersite.com"])
