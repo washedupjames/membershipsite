@@ -1,5 +1,5 @@
 release: python manage.py migrate
-web: gunicorn membersite.wsgi
+web: gunicorn membersite.membersite.wsgi
 
 
 
