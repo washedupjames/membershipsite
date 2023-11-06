@@ -85,7 +85,7 @@ LOCAL_APPS = [
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + [
-    'content', 
+    'membersite.content', ]
 
 # MIGRATIONS
 # ------------------------------------------------------------------------------
