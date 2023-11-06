@@ -147,6 +147,9 @@ EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
 INSTALLED_APPS = [
     "membersite.content",  # Add your custom app here
     "collectfast",
+    "membersite.content.apps.ContentConfig",
+    "membersite.users.apps.UsersConfig",
+    "membersite.payment.apps.PaymentConfig",
     # ...
     # Other installed apps
 ]
