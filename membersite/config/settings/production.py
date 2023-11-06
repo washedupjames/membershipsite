@@ -145,7 +145,7 @@ EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
 # ------------------------------------------------------------------------------
 # https://github.com/antonagestam/collectfast#installation
 INSTALLED_APPS = [
-    "membersite.content",  # Add your custom app here
+    "membersite.membersite.content",  # Add your custom app here
     "collectfast",
     # ...
     # Other installed apps
