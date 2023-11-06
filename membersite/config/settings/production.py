@@ -27,6 +27,7 @@ DATABASE = {
  
         }
     }
+WSGI_APPLICATION = 'membersite.wsgi.application'
 
 # CACHES
 # ------------------------------------------------------------------------------
