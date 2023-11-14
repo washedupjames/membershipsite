@@ -13,8 +13,12 @@ SECRET_KEY = "h__g#hlstt=qm%9+m4d3i1@+^-*8ygjw4wjk7_%_!r1%i5g!ln"
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 #ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["membersite.com"])
 ALLOWED_HOSTS = ['membersite.herokuapp.com']
+
+DEBUG = False
 # DATABASES
 # DATABASES = {"default": env.db("DATABASE_URL=postgres://xtjvmczxvegsuc:ac3d471f9297761e674c23459697c225368d3385651e342d5b465a4a6ab383f2@ec2-34-242-154-118.eu-west-1.compute.amazonaws.com:5432/d1u4nn6m7csn96
+SECURE_SSL_REDIRECT = True
+
 
 DATABASES = {'default': dj_database_url.config(default=os.getenv('postgres://xtjvmczxvegsuc:ac3d471f9297761e674c23459697c225368d3385651e342d5b465a4a6ab383f2@ec2-34-242-154-118.eu-west-1.compute.amazonaws.com:5432/d1u4nn6m7csn96'))}
 
@@ -73,6 +77,12 @@ SECURE_HSTS_PRELOAD = env.bool("DJANGO_SECURE_HSTS_PRELOAD", default=True)
 SECURE_CONTENT_TYPE_NOSNIFF = env.bool(
     "DJANGO_SECURE_CONTENT_TYPE_NOSNIFF", default=True
 )
+MIDDLEWARE = [
+    # ...
+    'django.middleware.security.SecurityMiddleware',
+    # ...
+]
+
 
 # STORAGES
 # ------------------------------------------------------------------------------
