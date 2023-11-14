@@ -1,5 +1,5 @@
 release: python membersite/manage.py migrate
-gunicorn --pythonpath membersite.config.wsgi:application
+gunicorn --pythonpath membersite membersite.config.wsgi:application
 
 
 
