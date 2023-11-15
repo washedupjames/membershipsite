@@ -1,0 +1,29 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Django with Gunicorn",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/manage.py",
+            "args": [
+                "runserver",
+                "--noreload",
+                "--nothreading"
+            ],
+            "django": true,
+            "stopOnEntry": false,
+            "showReturnValue": true,
+            "debuggerType": "auto",
+            "pythonPath": "${.env/Scripts/Python.exe}",
+            "env": {
+                "DJANGO_SETTINGS_MODULE": "membersite.config.settings.local"
+            },
+            "envFile": "${workspaceFolder}/.env",
+            "logToFile": true,
+            "preLaunchTask": "pipenv",
+            "postDebugCommand": "none",
+            "outputCapture": "std"
+        }
+    ]
+}
