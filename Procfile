@@ -1,4 +1,4 @@
-release: python membersite/manage.py migrate
+release: python manage.py migrate
 
 
 
