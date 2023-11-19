@@ -1,3 +1,5 @@
-web: gunicorn membersite.config.wsgi:application
 
 
+
+
+web: gunicorn membersite.membersite.config.wsgi:application
