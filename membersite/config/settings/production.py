@@ -20,22 +20,23 @@ DEBUG = False
 SECURE_SSL_REDIRECT = True
 
 
-DATABASES = {'default': dj_database_url.config(default=os.getenv('postgres://xtjvmczxvegsuc:ac3d471f9297761e674c23459697c225368d3385651e342d5b465a4a6ab383f2@ec2-34-242-154-118.eu-west-1.compute.amazonaws.com:5432/d1u4nn6m7csn96'))}
 
 # ------------------------------------------------------------------------------
 # DATABASES["default"]["CONN_MAX_AGE"] = env.int("CONN_MAX_AGE", default=60)  # noqa F405
 
-DATABASE = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'd1u4nn6m7csn96',
-            'USER': 'xtjvmczxvegsuc',
-            'PASSWORD': 'ac3d471f9297761e674c23459697c225368d3385651e342d5b465a4a6ab383f2',
-            'HOST': 'ec2-34-242-154-118.eu-west-1.compute.amazonaws.com',
-            'PORT' : '5432',
- 
-        }
-    }
+#DATABASE = {
+#        'default': {
+#            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#            'NAME': 'd1u4nn6m7csn96',
+#           'USER': 'xtjvmczxvegsuc',
+#           'PASSWORD': 'ac3d471f9297761e674c23459697c225368d3385651e342d5b465a4a6ab383f2',
+#           'HOST': 'ec2-34-242-154-118.eu-west-1.compute.amazonaws.com',
+#           'PORT' : '5432',
+#        }
+#    }
+
+DATABASES = {'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))}
+
 WSGI_APPLICATION = 'membersite.config.wsgi.application'
 
 # CACHES
@@ -43,7 +44,7 @@ WSGI_APPLICATION = 'membersite.config.wsgi.application'
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": env("REDIS_URL"),
+        "LOCATION": os.getenv("REDIS_URL"),
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
             # Mimicing memcache behavior.
@@ -80,6 +81,7 @@ SECURE_CONTENT_TYPE_NOSNIFF = env.bool(
 MIDDLEWARE = [
     # ...
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     # ...
 ]
 
