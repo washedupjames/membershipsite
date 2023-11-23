@@ -16,13 +16,17 @@ framework.
 import os
 import sys
 from pathlib import Path
-
+from membersite.content import *
 from django.core.wsgi import get_wsgi_application
+
+
+
 
 # This allows easy placement of apps within the interior
 # membersite directory.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 sys.path.insert(0, str(BASE_DIR / "membersite"))
+sys.path.insert(0, str(BASE_DIR / "membersite" / "content"))
 
 # We defer to a DJANGO_SETTINGS_MODULE already in the environment. This breaks
 # if running multiple sites in the same mod_wsgi process. To fix this, use
