@@ -163,11 +163,12 @@ EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
 # ------------------------------------------------------------------------------
 # https://github.com/antonagestam/collectfast#installation
 INSTALLED_APPS = [
+    "membersite.config",
     "membersite",  # Your main project module
     # Add any third-party apps
     "collectfast",
     # Include local apps
-    "membersite.content.apps.ContentConfig",
+    "membersite.membersite.content.apps.ContentConfig",
     "membersite.users.apps.UsersConfig",
     "membersite.payment.apps.PaymentConfig",
     # Add any other apps needed for your project
