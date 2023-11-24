@@ -168,7 +168,7 @@ INSTALLED_APPS = [
     # Add any third-party apps
     "collectfast",
     # Include local apps
-    "membersite.membersite.content.apps.ContentConfig",
+    "membersite.content.apps.ContentConfig",
     "membersite.users.apps.UsersConfig",
     "membersite.payment.apps.PaymentConfig",
     # Add any other apps needed for your project
