@@ -19,7 +19,7 @@ DEBUG = False
 # DATABASES = {"default": env.db("DATABASE_URL=postgres://xtjvmczxvegsuc:ac3d471f9297761e674c23459697c225368d3385651e342d5b465a4a6ab383f2@ec2-34-242-154-118.eu-west-1.compute.amazonaws.com:5432/d1u4nn6m7csn96
 SECURE_SSL_REDIRECT = True
 
-
+from membersite.config.settings.base import *
 
 # ------------------------------------------------------------------------------
 # DATABASES["default"]["CONN_MAX_AGE"] = env.int("CONN_MAX_AGE", default=60)  # noqa F405
