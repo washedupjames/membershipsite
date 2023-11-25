@@ -22,6 +22,7 @@ from django.core.wsgi import get_wsgi_application
 
 
 
+
 # This allows easy placement of apps within the interior
 # membersite directory.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
