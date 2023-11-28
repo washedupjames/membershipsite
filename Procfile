@@ -1,4 +1,4 @@
 
 
 
-web: gunicorn config.wsgi:application
+web: gunicorn membersite.config.wsgi:application
