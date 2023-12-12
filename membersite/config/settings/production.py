@@ -38,7 +38,7 @@ SECURE_SSL_REDIRECT = True
 
 DATABASES = {'default': dj_database_url.config(default=os.getenv('postgres://xtjvmczxvegsuc:ac3d471f9297761e674c23459697c225368d3385651e342d5b465a4a6ab383f2@ec2-34-242-154-118.eu-west-1.compute.amazonaws.com:5432/d1u4nn6m7csn96'))}
 
-WSGI_APPLICATION = 'config.wsgi.application'
+WSGI_APPLICATION = 'membersite.config.wsgi.application'
 
 # CACHES
 # ------------------------------------------------------------------------------
