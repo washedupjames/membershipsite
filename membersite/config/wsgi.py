@@ -16,7 +16,7 @@ framework.
 import os
 import sys
 from pathlib import Path
-from membersite.content import *
+#from membersite.content import *
 from django.core.wsgi import get_wsgi_application
 
 
