@@ -2,6 +2,7 @@ from .base import *  # noqa
 from .base import env
 import os
 
+print("This is local SETTINGS")
 # # GENERAL
 # # ------------------------------------------------------------------------------
 # # https://docs.djangoproject.com/en/dev/ref/settings/#debug

@@ -5,7 +5,7 @@ from .base import env
 import django_heroku
 import dj_database_url
 import os
-
+print("THIS ID PEODUCTION SETINGS")
 # # GENERAL
 # # ------------------------------------------------------------------------------
 # # https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
