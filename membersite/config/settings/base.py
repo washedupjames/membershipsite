@@ -71,26 +71,26 @@ LOCALE_PATHS = [str(BASE_DIR / "locale")]
 # # ------------------------------------------------------------------------------
 # # https://docs.djangoproject.com/en/dev/ref/settings/#root-urlconf
 # ROOT_URLCONF = "config.urls"
-# # https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
-# print("I AM IN SETTINGS")
-# WSGI_APPLICATION = "config.wsgi.application"
-# print("THIS IS MY BASE SETTINGS")
+# https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
+print("I AM IN SETTINGS")
+WSGI_APPLICATION = "config.wsgi.application"
+print("THIS IS MY BASE SETTINGS")
 
-# # APPS
-# # ------------------------------------------------------------------------------
-# DJANGO_APPS = [
-#     "django.contrib.auth",
-#     "django.contrib.contenttypes",
-#     "django.contrib.sessions",
-#     "django.contrib.sites",
-#     "django.contrib.messages",
-#     "django.contrib.staticfiles",
-#     # "django.contrib.humanize", # Handy template tags
-#     "django.contrib.admin",
-#     "django.forms",
-#     "membersite",
+# APPS
+# ------------------------------------------------------------------------------
+DJANGO_APPS = [
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.sites",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    # "django.contrib.humanize", # Handy template tags
+    "django.contrib.admin",
+    "django.forms",
+    # "membersite",
     
-# ]
+]
 # THIRD_PARTY_APPS = [
 #     "crispy_forms",
 #     "crispy_bootstrap5",
