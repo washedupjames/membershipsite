@@ -160,21 +160,21 @@ INSTALLED_APPS += ["anymail"]  # noqa F405
 # https://anymail.readthedocs.io/en/stable/esps/mailgun/
 EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
 
-# Collectfast
-# ------------------------------------------------------------------------------
-# https://github.com/antonagestam/collectfast#installation
-INSTALLED_APPS = [
-   # "membersite.config.production",
-    "membersite",  # Your main project module
-    # Add any third-party apps
-    "collectfast",
-    # Include local apps
-    "membersite.content.apps.ContentConfig",
-    "membersite.users.apps.UsersConfig",
-    "membersite.payment.apps.PaymentConfig",
-    # Add any other apps needed for your project
-    # ...
-]
+# # Collectfast
+# # ------------------------------------------------------------------------------
+# # https://github.com/antonagestam/collectfast#installation
+# INSTALLED_APPS = [
+#    # "membersite.config.production",
+#     "membersite",  # Your main project module
+#     # Add any third-party apps
+#     "collectfast",
+#     # Include local apps
+#     "membersite.content.apps.ContentConfig",
+#     "membersite.users.apps.UsersConfig",
+#     "membersite.payment.apps.PaymentConfig",
+#     # Add any other apps needed for your project
+#     # ...
+# ]
 # LOGGING
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#logging
