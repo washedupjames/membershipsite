@@ -2,9 +2,15 @@ from .base import *  # noqa
 #from membersite.config.settings.base import *
 
 from .base import env
-import django_heroku
+]import django_heroku
 import dj_database_url
 import os
+
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent.parent
+# membersite/
+APPS_DIR = BASE_DIR / "membersite"
 
 # GENERAL
 # ------------------------------------------------------------------------------
@@ -86,6 +92,7 @@ MIDDLEWARE = [
     # ...
 ]
 
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS
 
 # STORAGES
 # ------------------------------------------------------------------------------
@@ -163,18 +170,18 @@ EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
 # # Collectfast
 # # ------------------------------------------------------------------------------
 # # https://github.com/antonagestam/collectfast#installation
-# INSTALLED_APPS = [
-#    # "membersite.config.production",
-#     "membersite",  # Your main project module
-#     # Add any third-party apps
-#     "collectfast",
-#     # Include local apps
-#     "membersite.content.apps.ContentConfig",
-#     "membersite.users.apps.UsersConfig",
-#     "membersite.payment.apps.PaymentConfig",
-#     # Add any other apps needed for your project
-#     # ...
-# ]
+INSTALLED_APPS += [
+   # "membersite.config.production",
+    # "membersite",  # Your main project module
+    # Add any third-party apps
+    "collectfast",
+    # Include local apps
+    "membersite.content.apps.ContentConfig",
+    "membersite.users.apps.UsersConfig",
+    "membersite.payment.apps.PaymentConfig",
+    # Add any other apps needed for your project
+    # ...
+]
 # LOGGING
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#logging
