@@ -102,8 +102,8 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    "membersite.content.apps.ContentConfig",
-    "membersite.users.apps.UsersConfig",
+    "mcontent.apps.ContentConfig",
+    "membersite.membersite.users.apps.UsersConfig",
     "membersite.payment.apps.PaymentConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
