@@ -25,13 +25,10 @@ from django.core.wsgi import get_wsgi_application
 
 # This allows easy placement of apps within the interior
 # membersite directory.
-# BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
-# sys.path.append(str(BASE_DIR / "membersite"))
+BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
+sys.path.append(str(BASE_DIR / "membersite"))
 #sys.path.insert(0, str(BASE_DIR / "membersite" / "content"))
-   # This allows easy placement of apps within the interior
-    # membersite directory.
-current_path = Path(__file__).parent.resolve()
-sys.path.append(str(current_path / "membersite"))
+
 # We defer to a DJANGO_SETTINGS_MODULE already in the environment. This breaks
 # if running multiply
 # e sites in the same mod_wsgi process. To fix this, use
