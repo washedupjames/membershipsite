@@ -4,7 +4,7 @@ Base settings to build other settings files upon.
 from pathlib import Path
 
 import environ
-
+print("I GIT TO SETTINGS")
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 # membersite/
 APPS_DIR = BASE_DIR / "membersite"
@@ -71,7 +71,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # https://docs.djangoproject.com/en/dev/ref/settings/#root-urlconf
 ROOT_URLCONF = "config.urls"
 # https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
+print("I AM IN SETTINGS")
 WSGI_APPLICATION = "config.wsgi.application"
+print("THIS IS MY BASE SETTINGS")
 
 # APPS
 # ------------------------------------------------------------------------------
