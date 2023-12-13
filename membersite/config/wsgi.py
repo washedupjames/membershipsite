@@ -35,16 +35,16 @@ from django.core.wsgi import get_wsgi_application
 # mod_wsgi daemon mode with each site in its own daemon process, or use
 # os.environ["DJANGO_SETTINGS_MODULE"] = "config.settings.production"
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.production")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "membersite.config.settings.production")
 print(os.environ["DJANGO_SETTINGS_MODULE"])
 # This application object is used by any WSGI server configured to use this
 # file. This includes Django's development server, if the WSGI_APPLICATION
 # setting points here.
 print("THIS IS MY WSGI")
-try:
-    application = get_wsgi_application()
-except Exception as e:
-    print(e)
+
+application = get_wsgi_application()
+# except Exception as e:
+#     print(e)
 print('WHAT NEXT AFETER WSGI')
 # Apply WSGI middleware here.
 # from helloworld.wsgi import HelloWorldApplication
