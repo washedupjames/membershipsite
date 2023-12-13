@@ -4,7 +4,7 @@ Base settings to build other settings files upon.
 from pathlib import Path
 
 import environ
-print("I GIT TO SETTINGS")
+
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 # membersite/
 APPS_DIR = BASE_DIR / "membersite"
@@ -18,8 +18,7 @@ if READ_DOT_ENV_FILE:
 # GENERAL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#debug
-# DEBUG = env.bool("DJANGO_DEBUG", False)
-DEBUG = True
+DEBUG = env.bool("DJANGO_DEBUG", False)
 # Local time zone. Choices are
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # though not all of them may be available with every OS.
@@ -36,45 +35,43 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#locale-paths
 LOCALE_PATHS = [str(BASE_DIR / "locale")]
 
-# # DATABASES
-# # ------------------------------------------------------------------------------
-# # https://docs.djangoproject.com/en/dev/ref/settings/#databases
-# DATABASES = {"default": env.db("DATABASE_URL")}
-# DATABASES["default"]["ATOMIC_REQUESTS"] = True
+# DATABASES
+# ------------------------------------------------------------------------------
+# https://docs.djangoproject.com/en/dev/ref/settings/#databases
+DATABASES = {"default": env.db("DATABASE_URL")}
+DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
-# import os
-# import dj_database_url
+import os
+import dj_database_url
 
-# if 'DATABASE_URL' in os.environ:
-#     DATABASES = {
-#         'default': dj_database_url.config(default=os.environ.get('postgres://xtjvmczxvegsuc:ac3d471f9297761e674c23459697c225368d3385651e342d5b465a4a6ab383f2@ec2-34-242-154-118.eu-west-1.compute.amazonaws.com:5432/d1u4nn6m7csn96'))
-#     }
-# else:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.postgresql',
-#             'NAME': os.environ.get('LOCAL_DATABASE_NAME', 'membersite'),
-#             'USER': os.environ.get('LOCAL_DATABASE_USER', 'postgres'),
-#             'PASSWORD': os.environ.get('LOCAL_DATABASE_PASSWORD', 'Slayer123'),
-#             'HOST': os.environ.get('LOCAL_DATABASE_HOST', '127.0.0.1'),
-#             'PORT': os.environ.get('LOCAL_DATABASE_PORT', '5432'),
-#         }
-#     }
-
-
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.config(default=os.environ.get('postgres://xtjvmczxvegsuc:ac3d471f9297761e674c23459697c225368d3385651e342d5b465a4a6ab383f2@ec2-34-242-154-118.eu-west-1.compute.amazonaws.com:5432/d1u4nn6m7csn96'))
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ.get('LOCAL_DATABASE_NAME', 'membersite'),
+            'USER': os.environ.get('LOCAL_DATABASE_USER', 'postgres'),
+            'PASSWORD': os.environ.get('LOCAL_DATABASE_PASSWORD', 'Slayer123'),
+            'HOST': os.environ.get('LOCAL_DATABASE_HOST', '127.0.0.1'),
+            'PORT': os.environ.get('LOCAL_DATABASE_PORT', '5432'),
+        }
+    }
 
 
-# # https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-DEFAULT_AUTO_FIELD
-# DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# # URLS
-# # ------------------------------------------------------------------------------
-# # https://docs.djangoproject.com/en/dev/ref/settings/#root-urlconf
-# ROOT_URLCONF = "config.urls"
+
+# https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-DEFAULT_AUTO_FIELD
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# URLS
+# ------------------------------------------------------------------------------
+# https://docs.djangoproject.com/en/dev/ref/settings/#root-urlconf
+ROOT_URLCONF = "config.urls"
 # https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
-print("I AM IN SETTINGS")
-WSGI_APPLICATION = "membersite.config.wsgi.application"
-print("THIS IS MY BASE SETTINGS")
+WSGI_APPLICATION = "config.wsgi.application"
 
 # APPS
 # ------------------------------------------------------------------------------
@@ -88,48 +85,48 @@ DJANGO_APPS = [
     # "django.contrib.humanize", # Handy template tags
     "django.contrib.admin",
     "django.forms",
-    # "membersite",
+    "membersite",
     
 ]
-# THIRD_PARTY_APPS = [
-#     "crispy_forms",
-#     "crispy_bootstrap5",
-#     "allauth",
-#     "allauth.account",
-#     "allauth.socialaccount",
-#     "django_celery_beat",
-#     "rest_framework",
-#     "rest_framework.authtoken",
-#     "corsheaders",
-#     "drf_spectacular",
-# ]
+THIRD_PARTY_APPS = [
+    "crispy_forms",
+    "crispy_bootstrap5",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "django_celery_beat",
+    "rest_framework",
+    "rest_framework.authtoken",
+    "corsheaders",
+    "drf_spectacular",
+]
 
-# LOCAL_APPS = [
-#     "membersite.content.apps.ContentConfig",
-#     "membersite.users.apps.UsersConfig",
-#     "membersite.payment.apps.PaymentConfig",
-# ]
+LOCAL_APPS = [
+    "membersite.content.apps.ContentConfig",
+    "membersite.users.apps.UsersConfig",
+    "membersite.payment.apps.PaymentConfig",
+]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
-INSTALLED_APPS = DJANGO_APPS # + THIRD_PARTY_APPS + LOCAL_APPS
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
-# # MIGRATIONS
-# # ------------------------------------------------------------------------------
-# # https://docs.djangoproject.com/en/dev/ref/settings/#migration-modules
-# MIGRATION_MODULES = {"sites": "membersite.contrib.sites.migrations"}
+# MIGRATIONS
+# ------------------------------------------------------------------------------
+# https://docs.djangoproject.com/en/dev/ref/settings/#migration-modules
+MIGRATION_MODULES = {"sites": "membersite.contrib.sites.migrations"}
 
-# # AUTHENTICATION
-# # ------------------------------------------------------------------------------
-# # https://docs.djangoproject.com/en/dev/ref/settings/#authentication-backends
-# AUTHENTICATION_BACKENDS = [
-#     "django.contrib.auth.backends.ModelBackend",
-#     "allauth.account.auth_backends.AuthenticationBackend",
-# ]
-# # https://docs.djangoproject.com/en/dev/ref/settings/#auth-user-model
-# AUTH_USER_MODEL = "users.User"
-# # https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
-# LOGIN_REDIRECT_URL = "users:redirect"
-# # https://docs.djangoproject.com/en/dev/ref/settings/#login-url
-# LOGIN_URL = "account_login"
+# AUTHENTICATION
+# ------------------------------------------------------------------------------
+# https://docs.djangoproject.com/en/dev/ref/settings/#authentication-backends
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+]
+# https://docs.djangoproject.com/en/dev/ref/settings/#auth-user-model
+AUTH_USER_MODEL = "users.User"
+# https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
+LOGIN_REDIRECT_URL = "users:redirect"
+# https://docs.djangoproject.com/en/dev/ref/settings/#login-url
+LOGIN_URL = "account_login"
 
 # PASSWORDS
 # ------------------------------------------------------------------------------
@@ -209,157 +206,157 @@ TEMPLATES = [
                 "django.template.context_processors.static",
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
-                # "membersite.users.context_processors.allauth_settings",
+                "membersite.users.context_processors.allauth_settings",
             ],
         },
     }
 ]
 
-# # https://docs.djangoproject.com/en/dev/ref/settings/#form-renderer
-# FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
+# https://docs.djangoproject.com/en/dev/ref/settings/#form-renderer
+FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
 
-# # http://django-crispy-forms.readthedocs.io/en/latest/install.html#template-packs
-# CRISPY_TEMPLATE_PACK = "bootstrap5"
-# CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+# http://django-crispy-forms.readthedocs.io/en/latest/install.html#template-packs
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
-# # FIXTURES
-# # ------------------------------------------------------------------------------
-# # https://docs.djangoproject.com/en/dev/ref/settings/#fixture-dirs
-# FIXTURE_DIRS = (str(APPS_DIR / "fixtures"),)
+# FIXTURES
+# ------------------------------------------------------------------------------
+# https://docs.djangoproject.com/en/dev/ref/settings/#fixture-dirs
+FIXTURE_DIRS = (str(APPS_DIR / "fixtures"),)
 
-# # SECURITY
-# # ------------------------------------------------------------------------------
-# # https://docs.djangoproject.com/en/dev/ref/settings/#session-cookie-httponly
-# SESSION_COOKIE_HTTPONLY = True
-# # https://docs.djangoproject.com/en/dev/ref/settings/#csrf-cookie-httponly
-# CSRF_COOKIE_HTTPONLY = True
-# # https://docs.djangoproject.com/en/dev/ref/settings/#secure-browser-xss-filter
-# SECURE_BROWSER_XSS_FILTER = True
-# # https://docs.djangoproject.com/en/dev/ref/settings/#x-frame-options
-# X_FRAME_OPTIONS = "DENY"
+# SECURITY
+# ------------------------------------------------------------------------------
+# https://docs.djangoproject.com/en/dev/ref/settings/#session-cookie-httponly
+SESSION_COOKIE_HTTPONLY = True
+# https://docs.djangoproject.com/en/dev/ref/settings/#csrf-cookie-httponly
+CSRF_COOKIE_HTTPONLY = True
+# https://docs.djangoproject.com/en/dev/ref/settings/#secure-browser-xss-filter
+SECURE_BROWSER_XSS_FILTER = True
+# https://docs.djangoproject.com/en/dev/ref/settings/#x-frame-options
+X_FRAME_OPTIONS = "DENY"
 
-# # EMAIL
-# # ------------------------------------------------------------------------------
-# # https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
-# EMAIL_BACKEND = env(
-#     "DJANGO_EMAIL_BACKEND",
-#     default="django.core.mail.backends.smtp.EmailBackend",
-# )
-# # https://docs.djangoproject.com/en/dev/ref/settings/#email-timeout
-# EMAIL_TIMEOUT = 5
+# EMAIL
+# ------------------------------------------------------------------------------
+# https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
+EMAIL_BACKEND = env(
+    "DJANGO_EMAIL_BACKEND",
+    default="django.core.mail.backends.smtp.EmailBackend",
+)
+# https://docs.djangoproject.com/en/dev/ref/settings/#email-timeout
+EMAIL_TIMEOUT = 5
 
-# # ADMIN
-# # ------------------------------------------------------------------------------
-# # Django Admin URL.
-# ADMIN_URL = "admin/"
-# # https://docs.djangoproject.com/en/dev/ref/settings/#admins
-# ADMINS = [("""James Parker""", "parkerman23@gmail.com")]
-# # https://docs.djangoproject.com/en/dev/ref/settings/#managers
-# MANAGERS = ADMINS
+# ADMIN
+# ------------------------------------------------------------------------------
+# Django Admin URL.
+ADMIN_URL = "admin/"
+# https://docs.djangoproject.com/en/dev/ref/settings/#admins
+ADMINS = [("""James Parker""", "parkerman23@gmail.com")]
+# https://docs.djangoproject.com/en/dev/ref/settings/#managers
+MANAGERS = ADMINS
 
-# # LOGGING
-# # ------------------------------------------------------------------------------
-# # https://docs.djangoproject.com/en/dev/ref/settings/#logging
-# # See https://docs.djangoproject.com/en/dev/topics/logging for
-# # more details on how to customize your logging configuration.
-# LOGGING = {
-#     "version": 1,
-#     "disable_existing_loggers": False,
-#     "formatters": {
-#         "verbose": {
-#             "format": "%(levelname)s %(asctime)s %(module)s "
-#             "%(process)d %(thread)d %(message)s"
-#         }
-#     },
-#     "handlers": {
-#         "console": {
-#             "level": "DEBUG",
-#             "class": "logging.StreamHandler",
-#             "formatter": "verbose",
-#         }
-#     },
-#     "root": {"level": "INFO", "handlers": ["console"]},
-# }
+# LOGGING
+# ------------------------------------------------------------------------------
+# https://docs.djangoproject.com/en/dev/ref/settings/#logging
+# See https://docs.djangoproject.com/en/dev/topics/logging for
+# more details on how to customize your logging configuration.
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "%(levelname)s %(asctime)s %(module)s "
+            "%(process)d %(thread)d %(message)s"
+        }
+    },
+    "handlers": {
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
+        }
+    },
+    "root": {"level": "INFO", "handlers": ["console"]},
+}
 
-# # Celery
-# # ------------------------------------------------------------------------------
-# # if USE_TZ:
-#     # https://docs.celeryq.dev/en/stable/userguide/configuration.html#std:setting-timezone
-#  #   CELERY_TIMEZONE = TIME_ZONE
-# # https://docs.celeryq.dev/en/stable/userguide/configuration.html#std:setting-broker_url
-# #CELERY_BROKER_URL = env("CELERY_BROKER_URL")
-# # https://docs.celeryq.dev/en/stable/userguide/configuration.html#std:setting-result_backend
-# #CELERY_RESULT_BACKEND = CELERY_BROKER_URL
-# # https://docs.celeryq.dev/en/stable/userguide/configuration.html#result-extended
-# #CELERY_RESULT_EXTENDED = True
-# # https://docs.celeryq.dev/en/stable/userguide/configuration.html#result-backend-always-retry
-# # https://github.com/celery/celery/pull/6122
-# #CELERY_RESULT_BACKEND_ALWAYS_RETRY = True
-# # https://docs.celeryq.dev/en/stable/userguide/configuration.html#result-backend-max-retries
-# #CELERY_RESULT_BACKEND_MAX_RETRIES = 10
-# # https://docs.celeryq.dev/en/stable/userguide/configuration.html#std:setting-accept_content
-# #CELERY_ACCEPT_CONTENT = ["json"]
-# # https://docs.celeryq.dev/en/stable/userguide/configuration.html#std:setting-task_serializer
-# #CELERY_TASK_SERIALIZER = "json"
-# # https://docs.celeryq.dev/en/stable/userguide/configuration.html#std:setting-result_serializer
-# #CELERY_RESULT_SERIALIZER = "json"
-# # https://docs.celeryq.dev/en/stable/userguide/configuration.html#task-time-limit
-# # TODO: set to whatever value is adequate in your circumstances
-# #CELERY_TASK_TIME_LIMIT = 5 * 60
-# # https://docs.celeryq.dev/en/stable/userguide/configuration.html#task-soft-time-limit
-# # TODO: set to whatever value is adequate in your circumstances
-# #CELERY_TASK_SOFT_TIME_LIMIT = 60
-# # https://docs.celeryq.dev/en/stable/userguide/configuration.html#beat-scheduler
-# #CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
-# # https://docs.celeryq.dev/en/stable/userguide/configuration.html#worker-send-task-events
-# #CELERY_WORKER_SEND_TASK_EVENTS = True
-# # https://docs.celeryq.dev/en/stable/userguide/configuration.html#std-setting-task_send_sent_event
-# #CELERY_TASK_SEND_SENT_EVENT = True
-# # django-allauth
-# # ------------------------------------------------------------------------------
-# ACCOUNT_ALLOW_REGISTRATION = env.bool("DJANGO_ACCOUNT_ALLOW_REGISTRATION", True)
-# # https://django-allauth.readthedocs.io/en/latest/configuration.html
-# ACCOUNT_AUTHENTICATION_METHOD = "username"
-# # https://django-allauth.readthedocs.io/en/latest/configuration.html
-# ACCOUNT_EMAIL_REQUIRED = True
-# # https://django-allauth.readthedocs.io/en/latest/configuration.html
-# ACCOUNT_EMAIL_VERIFICATION = "mandatory"
-# # https://django-allauth.readthedocs.io/en/latest/configuration.html
-# ACCOUNT_ADAPTER = "membersite.users.adapters.AccountAdapter"
-# # https://django-allauth.readthedocs.io/en/latest/forms.html
-# ACCOUNT_FORMS = {"signup": "membersite.users.forms.UserSignupForm"}
-# # https://django-allauth.readthedocs.io/en/latest/configuration.html
-# SOCIALACCOUNT_ADAPTER = "membersite.users.adapters.SocialAccountAdapter"
-# # https://django-allauth.readthedocs.io/en/latest/forms.html
-# SOCIALACCOUNT_FORMS = {"signup": "membersite.users.forms.UserSocialSignupForm"}
+# Celery
+# ------------------------------------------------------------------------------
+# if USE_TZ:
+    # https://docs.celeryq.dev/en/stable/userguide/configuration.html#std:setting-timezone
+ #   CELERY_TIMEZONE = TIME_ZONE
+# https://docs.celeryq.dev/en/stable/userguide/configuration.html#std:setting-broker_url
+#CELERY_BROKER_URL = env("CELERY_BROKER_URL")
+# https://docs.celeryq.dev/en/stable/userguide/configuration.html#std:setting-result_backend
+#CELERY_RESULT_BACKEND = CELERY_BROKER_URL
+# https://docs.celeryq.dev/en/stable/userguide/configuration.html#result-extended
+#CELERY_RESULT_EXTENDED = True
+# https://docs.celeryq.dev/en/stable/userguide/configuration.html#result-backend-always-retry
+# https://github.com/celery/celery/pull/6122
+#CELERY_RESULT_BACKEND_ALWAYS_RETRY = True
+# https://docs.celeryq.dev/en/stable/userguide/configuration.html#result-backend-max-retries
+#CELERY_RESULT_BACKEND_MAX_RETRIES = 10
+# https://docs.celeryq.dev/en/stable/userguide/configuration.html#std:setting-accept_content
+#CELERY_ACCEPT_CONTENT = ["json"]
+# https://docs.celeryq.dev/en/stable/userguide/configuration.html#std:setting-task_serializer
+#CELERY_TASK_SERIALIZER = "json"
+# https://docs.celeryq.dev/en/stable/userguide/configuration.html#std:setting-result_serializer
+#CELERY_RESULT_SERIALIZER = "json"
+# https://docs.celeryq.dev/en/stable/userguide/configuration.html#task-time-limit
+# TODO: set to whatever value is adequate in your circumstances
+#CELERY_TASK_TIME_LIMIT = 5 * 60
+# https://docs.celeryq.dev/en/stable/userguide/configuration.html#task-soft-time-limit
+# TODO: set to whatever value is adequate in your circumstances
+#CELERY_TASK_SOFT_TIME_LIMIT = 60
+# https://docs.celeryq.dev/en/stable/userguide/configuration.html#beat-scheduler
+#CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
+# https://docs.celeryq.dev/en/stable/userguide/configuration.html#worker-send-task-events
+#CELERY_WORKER_SEND_TASK_EVENTS = True
+# https://docs.celeryq.dev/en/stable/userguide/configuration.html#std-setting-task_send_sent_event
+#CELERY_TASK_SEND_SENT_EVENT = True
+# django-allauth
+# ------------------------------------------------------------------------------
+ACCOUNT_ALLOW_REGISTRATION = env.bool("DJANGO_ACCOUNT_ALLOW_REGISTRATION", True)
+# https://django-allauth.readthedocs.io/en/latest/configuration.html
+ACCOUNT_AUTHENTICATION_METHOD = "username"
+# https://django-allauth.readthedocs.io/en/latest/configuration.html
+ACCOUNT_EMAIL_REQUIRED = True
+# https://django-allauth.readthedocs.io/en/latest/configuration.html
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+# https://django-allauth.readthedocs.io/en/latest/configuration.html
+ACCOUNT_ADAPTER = "membersite.users.adapters.AccountAdapter"
+# https://django-allauth.readthedocs.io/en/latest/forms.html
+ACCOUNT_FORMS = {"signup": "membersite.users.forms.UserSignupForm"}
+# https://django-allauth.readthedocs.io/en/latest/configuration.html
+SOCIALACCOUNT_ADAPTER = "membersite.users.adapters.SocialAccountAdapter"
+# https://django-allauth.readthedocs.io/en/latest/forms.html
+SOCIALACCOUNT_FORMS = {"signup": "membersite.users.forms.UserSocialSignupForm"}
 
-# # django-rest-framework
-# # -------------------------------------------------------------------------------
-# # django-rest-framework - https://www.django-rest-framework.org/api-guide/settings/
-# REST_FRAMEWORK = {
-#     "DEFAULT_AUTHENTICATION_CLASSES": (
-#         "rest_framework.authentication.SessionAuthentication",
-#         "rest_framework.authentication.TokenAuthentication",
-#     ),
-#     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
-#     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
-# }
+# django-rest-framework
+# -------------------------------------------------------------------------------
+# django-rest-framework - https://www.django-rest-framework.org/api-guide/settings/
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+    ),
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
 
-# # django-cors-headers - https://github.com/adamchainz/django-cors-headers#setup
-# CORS_URLS_REGEX = r"^/api/.*$"
+# django-cors-headers - https://github.com/adamchainz/django-cors-headers#setup
+CORS_URLS_REGEX = r"^/api/.*$"
 
-# # By Default swagger ui is available only to admin user(s). You can change permission classes to change that
-# # See more configuration options at https://drf-spectacular.readthedocs.io/en/latest/settings.html#settings
-# SPECTACULAR_SETTINGS = {
-#     "TITLE": "membersite API",
-#     "DESCRIPTION": "Documentation of API endpoints of membersite",
-#     "VERSION": "1.0.0",
-#     "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAdminUser"],
-# }
-# # Your stuff...
-# # ------------------------------------------------------------------------------
+# By Default swagger ui is available only to admin user(s). You can change permission classes to change that
+# See more configuration options at https://drf-spectacular.readthedocs.io/en/latest/settings.html#settings
+SPECTACULAR_SETTINGS = {
+    "TITLE": "membersite API",
+    "DESCRIPTION": "Documentation of API endpoints of membersite",
+    "VERSION": "1.0.0",
+    "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAdminUser"],
+}
+# Your stuff...
+# ------------------------------------------------------------------------------
 
-# STRIPE_PUBLIC_KEY = env("STRIPE_PUBLIC_KEY")
-# STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY")
-# STRIPE_WEBHOOK_SECRET = env("STRIPE_WEBHOOK_SECRET")
+STRIPE_PUBLIC_KEY = env("STRIPE_PUBLIC_KEY")
+STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY")
+STRIPE_WEBHOOK_SECRET = env("STRIPE_WEBHOOK_SECRET")
 

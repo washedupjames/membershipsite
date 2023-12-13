@@ -38,7 +38,6 @@ dj-database-url==2.1.0
 Django==4.0.10
 django-allauth==0.52.0
 django-celery-beat==2.4.0
-django-config
 django-cors-headers==3.14.0
 django-coverage-plugin==3.0.0
 django-crispy-forms==2.0
