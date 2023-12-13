@@ -1,5 +1,5 @@
 from .base import *  # noqa
-#from membersite.config.settings.base import *
+
 
 from .base import env
 import django_heroku
@@ -164,7 +164,7 @@ EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
 # ------------------------------------------------------------------------------
 # https://github.com/antonagestam/collectfast#installation
 INSTALLED_APPS = [
-   # "membersite.config.production",
+   
     "membersite",  # Your main project module
     # Add any third-party apps
     "collectfast",
