@@ -25,8 +25,8 @@ from django.core.wsgi import get_wsgi_application
 
 # This allows easy placement of apps within the interior
 # membersite directory.
-BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
-sys.path.append(str(BASE_DIR / "membersite"))
+# BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
+# sys.path.append(str(BASE_DIR / "membersite"))
 #sys.path.insert(0, str(BASE_DIR / "membersite" / "content"))
 
 # We defer to a DJANGO_SETTINGS_MODULE already in the environment. This breaks
@@ -42,6 +42,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.production")
 # setting points here.
 print("THIS IS MY WSGI")
 application = get_wsgi_application()
+print('WHAT NEXT AFETER WSGI')
 # Apply WSGI middleware here.
 # from helloworld.wsgi import HelloWorldApplication
 # application = HelloWorldApplication(application)
