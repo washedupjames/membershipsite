@@ -73,7 +73,7 @@ LOCALE_PATHS = [str(BASE_DIR / "locale")]
 # ROOT_URLCONF = "config.urls"
 # https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
 print("I AM IN SETTINGS")
-WSGI_APPLICATION = "config.wsgi.application"
+WSGI_APPLICATION = "membersite.config.wsgi.application"
 print("THIS IS MY BASE SETTINGS")
 
 # APPS
@@ -209,7 +209,7 @@ TEMPLATES = [
                 "django.template.context_processors.static",
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
-                "membersite.users.context_processors.allauth_settings",
+                # "membersite.users.context_processors.allauth_settings",
             ],
         },
     }
