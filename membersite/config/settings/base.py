@@ -102,7 +102,7 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    "mcontent.apps.ContentConfig",
+    "content.apps.ContentConfig",
     "membersite.membersite.users.apps.UsersConfig",
     "membersite.payment.apps.PaymentConfig",
 ]
